@@ -1,15 +1,29 @@
 <template>
-  <div>
-    <p>Home Page Raneki</p>
-  </div>
+  <section>
+    <h1>👍 Compre ou Venda 👎</h1>
+    <ProductsSearch></ProductsSearch>
+    <ProductsList></ProductsList>
+  </section>
 </template>
 
 <script>
-    export default {
-        name: 'HomePage'
-    }
+  import ProductsSearch from "@/components/ProductsSearch.vue";
+  import ProductsList from "@/components/ProductsList.vue";
+
+  export default {
+      name: 'HomePage',
+      components: {
+        ProductsSearch,
+        ProductsList
+      }
+  }
 </script>
 
-<style>
-
+<style scoped>
+  h1{
+    font-size:2rem;
+    color: #87f;
+    margin-top:40px;
+    text-align:center;
+  }
 </style>

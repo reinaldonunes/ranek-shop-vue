@@ -10,7 +10,7 @@
     }
 </script>
 
-<style>
+<style scoped>
   footer{
     top:75px;
     background: #87f;
