@@ -1,6 +1,6 @@
 <template>
   <ul v-if="paginate > 1">
-    <li v-for="page in paginate" :key="page">
+    <li v-for="page in paginas" :key="page">
       <router-link :to="{ query: query(page)}">{{ page }}</router-link>
     </li>
   </ul>
@@ -23,6 +23,22 @@
           paginate(){
             const total = this.produtosTotal / this.perView
             return (total !== Infinity) ? Math.ceil(total) : 0
+          },
+          paginas(){
+            const current = Number(this.$route.query._page)
+            const range = 9
+            const offset = Math.ceil(range / 2)
+            const total = this.paginate
+            const pagesArray = []
+
+            for(let i=1; i<= total; i++){
+              pagesArray.push(i)
+            }
+
+            pagesArray.splice(0, current - offset)
+            pagesArray.splice(range, total)
+
+            return pagesArray
           }
         },
         methods:{
