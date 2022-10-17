@@ -3,7 +3,23 @@ import App from './App.vue'
 import router from './router/index.js'
 import store from './store/index.js'
 
+import PageLoad from '@/components/PageLoad.vue'
+
 Vue.config.productionTip = false
+
+Vue.component("PageLoad", PageLoad)
+
+Vue.filter("parseCurrency", valor =>{
+  valor = Number(valor)
+  if(!isNaN(valor)){
+    return valor.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    })
+  }else{
+    return ""
+  }
+})
 
 new Vue({
   router,

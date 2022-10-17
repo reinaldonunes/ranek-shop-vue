@@ -1,19 +1,22 @@
 <template>
   <section class="produtos-container">
-    <div v-if="produtos && produtos.length > 0" class="produtos">
-        <div class="produto" v-for="(produto, index) in produtos" :key="index">
-            <router-link to="/">
-                <img v-if="produto.fotos" :src="produto.fotos[0].src" :alt="produto.fotos[0].titulo" />
-                <p class="preco">{{ produto.preco }}</p>
-                <h2 class="titulo">{{ produto.nome }}</h2>
-                <p>{{ produto.descricao }}</p>
-            </router-link>
+    <transition mode="out-in">
+        <div v-if="produtos && produtos.length > 0" class="produtos" :key="produtos">
+            <div class="produto" v-for="(produto, index) in produtos" :key="index">
+                <router-link :to="{ name: 'product', params: { id: produto.id }}">
+                    <img v-if="produto.fotos" :src="produto.fotos[0].src" :alt="produto.fotos[0].titulo" />
+                    <p class="preco">{{ produto.preco | parseCurrency }}</p>
+                    <h2 class="titulo">{{ produto.nome }}</h2>
+                    <p>{{ produto.descricao }}</p>
+                </router-link>
+            </div>
+            <ProductsPaginate :produtosTotal="produtosTotal" :perView="perView"></ProductsPaginate>
         </div>
-        <ProductsPaginate :produtosTotal="produtosTotal" :perView="perView"></ProductsPaginate>
-    </div>
-    <div v-else-if="produtos && produtos.length === 0" class="sem-resultado">
-        Busca sem resultados. Tente pesquisar outro termo.
-    </div>
+        <div v-else-if="produtos && produtos.length === 0" class="sem-resultado" :key="sem-resultados">
+            Busca sem resultados. Tente pesquisar outro termo.
+        </div>
+        <PageLoad :key="loading"></PageLoad>
+    </transition>
   </section>
 </template>
 
@@ -43,11 +46,14 @@
         },  
         methods:{
             getProdutos(){
-                api.get(this.url)
-                .then(response => {
-                    this.produtosTotal = Number(response.headers["x-total-count"])
-                    this.produtos = response.data
-                })
+                this.produtos = null
+                window.setTimeout(() => {
+                    api.get(this.url)
+                    .then(response => {
+                        this.produtosTotal = Number(response.headers["x-total-count"])
+                        this.produtos = response.data
+                    })
+                },1000)
             }
         },
         watch:{
@@ -101,5 +107,23 @@
     .sem-resultado{
         text-align:center;
     }
+
+    .v-enter,
+    .v-leave-to{
+        opacity:0;
+    }
+
+    .v-enter{
+        transform: translate3d(0,-20px, 0);
+    }
+    .v-leave-to{
+        transform: translate3d(0,20px, 0);
+    }
+
+    .v-enter-active,
+    .v-leave-active{
+        transition: 0.3s;
+    }
+
 
 </style>
