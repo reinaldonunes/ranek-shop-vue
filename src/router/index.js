@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomePage from '@/views/HomePage.vue';
 import ProductView from '@/views/ProductView.vue';
+import LoginPanel from '@/views/LoginPanel.vue';
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,11 @@ const routes = [
     name: 'product',
     component: ProductView,
     props: true
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginPanel
   }
 ]
 
