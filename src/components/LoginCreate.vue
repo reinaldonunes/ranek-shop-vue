@@ -1,13 +1,13 @@
 <template>
   <section>
     <h2>Crie a sua conta</h2>
-    <transition mode="out-in">
+    <transition-group mode="out-in">
       <button v-if="!criar" @click="criar = true" class="btn">Criar conta</button>
       <UserForm v-else>
         <button class="btn btn-form" @click.prevent="createUser">Criar usuário</button>
       </UserForm>
       <ErrorNotification :errors="errors"></ErrorNotification>
-    </transition>
+    </transition-group>
   </section>
 </template>
 

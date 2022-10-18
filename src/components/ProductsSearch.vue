@@ -26,6 +26,7 @@
         max-width:600px;
         margin:30px auto 60px auto;
         position:relative;
+        padding:0px 10px;
     }
 
     #busca{
