@@ -15,7 +15,7 @@
         <div v-else-if="produtos && produtos.length === 0" class="sem-resultado" :key="sem-resultados">
             Busca sem resultados. Tente pesquisar outro termo.
         </div>
-        <PageLoad :key="loading"></PageLoad>
+        <PageLoad v-else></PageLoad>
     </transition>
   </section>
 </template>
