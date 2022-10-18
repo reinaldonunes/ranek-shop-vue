@@ -5,7 +5,7 @@
       <label for="email">E-mail</label>
       <input type="text" name="email" id="email" v-model="login.email" />
 
-      <label for="password">E-mail</label>
+      <label for="password">Senha</label>
       <input type="password" name="senha" id="senha" v-model="login.senha" />
 
       <button @click.prevent="logar" class="btn">Logar</button>
@@ -16,7 +16,7 @@
       <a href="http://localhost/ranekwp/wp-login.php?action=lostpassword" target="_blank">Perdeu a senha? Clique aqui.</a>
     </p>
 
-    <LoginCreate></LoginCreate>
+    <LoginCreate :key="2"></LoginCreate>
   </section>
 </template>
 

@@ -1,13 +1,15 @@
 <template>
   <section>
     <h2>Crie a sua conta</h2>
-    <transition-group mode="out-in">
-      <button v-if="!criar" @click="criar = true" class="btn">Criar conta</button>
-      <UserForm v-else>
-        <button class="btn btn-form" @click.prevent="createUser">Criar usuário</button>
-      </UserForm>
-      <ErrorNotification :errors="errors"></ErrorNotification>
-    </transition-group>
+    <transition mode="out-in" :key="1">
+      <div>
+        <button v-if="!criar" @click="criar = true" class="btn">Criar conta</button>
+        <UserForm v-else :key="1">
+          <button class="btn btn-form" @click.prevent="createUser">Criar usuário</button>
+        </UserForm>
+        <ErrorNotification :errors="errors" :key="2"></ErrorNotification>
+      </div>
+    </transition>
   </section>
 </template>
 
