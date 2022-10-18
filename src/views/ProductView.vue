@@ -10,8 +10,11 @@
             <h1>{{ produto.nome }}</h1>
             <p class="preco"> {{ produto.preco | parseCurrency }}</p>
             <p class="descricao">{{ produto.descricao }}</p>
-            <button class="btn" v-if="produto.vendido === 'false'">Comprar</button>
-            <button class="btn" v-else disabled>Vendido</button>
+            <transition v-if="produto.vendido === 'false'" mode="out-in">
+              <button class="btn" v-if="!finalizar" @click="finalizar = true">Comprar</button>
+              <FinishedPurchase v-else :produto="produto" />
+            </transition>
+            <button class="btn" v-else disabled>Produto Vendido</button>
         </div>
     </div>
     <PageLoad v-else></PageLoad>
@@ -19,28 +22,33 @@
 </template>
 
 <script>
-    import { api } from '@/services.js';
+  import { api } from '@/services.js';
+  import FinishedPurchase from '@/views/FinishedPurchase.vue';
 
-    export default {
-        name: "ProductView",
-        props: ["id"],
-        data(){
-            return{
-                produto: null
-            }
-        },
-        methods:{
-            getProduto(){
-                api.get(`/produto/${this.id}`)
-                    .then(response =>{
-                        this.produto = response.data
-                    })
-            }
-        },
-        created(){
-            this.getProduto();
-        }
+  export default {
+    name: "ProductView",
+    props: ["id"],
+    components:{
+      FinishedPurchase
+    },
+    data(){
+      return{
+        produto: null,
+        finalizar: false
+      }
+    },
+    methods:{
+      getProduto(){
+        api.get(`/produto/${this.id}`)
+          .then(response =>{
+            this.produto = response.data
+          })
+      }
+    },
+    created(){
+        this.getProduto();
     }
+  }
 </script>
 
 <style scoped>

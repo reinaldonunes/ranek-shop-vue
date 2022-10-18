@@ -35,7 +35,7 @@ export default new Vuex.Store({
       state.userProducts = payload
     },
     ADD_USER_PRODUCTS(state, payload){
-      state.userProducts.unshit(payload)
+      state.userProducts.unshift(payload)
     }
   },
   actions: {

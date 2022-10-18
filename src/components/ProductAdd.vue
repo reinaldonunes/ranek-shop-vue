@@ -29,6 +29,7 @@ export default {
         preco: "",
         descricao: "",
         fotos: null,
+        vendido: "false"
       }
     }
   },
@@ -41,6 +42,7 @@ export default {
       api.post("/produto", this.produto)
         .then(() => {
           this.$store.dispatch("getUserProducts")
+
         })
     }
   }

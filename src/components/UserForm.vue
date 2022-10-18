@@ -1,13 +1,15 @@
 <template>
   <form>
-    <label for="nome">Nome</label>
-    <input type="text" name="nome" id="nome" v-model="nome">
+    <fieldset class="dataUser" v-if="mostrarDadosLogin">
+      <label for="nome">Nome</label>
+      <input type="text" name="nome" id="nome" v-model="nome">
 
-    <label for="email">E-mail</label>
-    <input type="email" name="email" id="email" v-model="email">
+      <label for="email">E-mail</label>
+      <input type="email" name="email" id="email" v-model="email">
 
-    <label for="senha">Senha</label>
-    <input type="password" name="senha" id="senha" v-model="senha">
+      <label for="senha">Senha</label>
+      <input type="password" name="senha" id="senha" v-model="senha">
+    </fieldset>
 
     <label for="cep">Cep</label>
     <input type="text" name="cep" id="cep" v-model="cep">
@@ -44,16 +46,25 @@
         fields: ["nome","email","senha", "rua", "cep", "numero", "bairro", "cidade", "estado"],
         base: 'user',
         mutation: "UPDATE_USER"
-      })
+      }),
+      mostrarDadosLogin(){
+        return (!this.$store.state.login || this.$route.name === 'user-edit')
+      }
     }
   }
 </script>
 
 <style scoped>
-  form{
+  form, 
+  .dataUser{
     display:grid;
     grid-template-columns: 80px 1fr;
     align-items: center;
+  }
+  .dataUser{
+    grid-column: 1 / 3;
+    border:0px;
+    padding:0px;
   }
 
   .button{
