@@ -6,6 +6,7 @@
       <UserForm v-else>
         <button class="btn btn-form" @click.prevent="createUser">Criar usuário</button>
       </UserForm>
+      <ErrorNotification :errors="errors"></ErrorNotification>
     </transition>
   </section>
 </template>
@@ -20,18 +21,20 @@
     },
     data(){
       return{
-        criar: false
+        criar: false,
+        errors: []
       }
     },
     methods:{
       async createUser(){
+        this.errors = []
         try{
           await this.$store.dispatch("createUser", this.$store.state.user)
           await this.$store.dispatch("logarUsuario", this.$store.state.user)
           await this.$store.dispatch("getUser")
           this.$router.push({ name: "user"})
         }catch(error){
-          console.log(error)
+          this.errors.push(error.response.data.message)
         }
       }
     }

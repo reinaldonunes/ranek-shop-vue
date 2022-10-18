@@ -1,7 +1,7 @@
 <template>
   <section class="produtos-container">
     <transition mode="out-in">
-        <div v-if="produtos && produtos.length > 0" class="produtos" :key="produtos">
+        <div v-if="produtos && produtos.length > 0" class="produtos" :key="produtos.length">
             <div class="produto" v-for="(produto, index) in produtos" :key="index">
                 <router-link :to="{ name: 'product', params: { id: produto.id }}">
                     <img v-if="produto.fotos" :src="produto.fotos[0].src" :alt="produto.fotos[0].titulo" />
@@ -47,13 +47,13 @@
         methods:{
             getProdutos(){
                 this.produtos = null
-                window.setTimeout(() => {
-                    api.get(this.url)
-                    .then(response => {
-                        this.produtosTotal = Number(response.headers["x-total-count"])
-                        this.produtos = response.data
-                    })
-                },1000)
+                api.get(this.url)
+                .then(response => {
+                    this.produtosTotal = Number(response.headers["x-total-count"])
+                    this.produtos = response.data
+
+                    console.log(response)
+                })
             }
         },
         watch:{

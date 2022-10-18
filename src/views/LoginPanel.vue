@@ -6,12 +6,14 @@
       <input type="text" name="email" id="email" v-model="login.email" />
 
       <label for="password">E-mail</label>
-      <input type="password" name="password" id="password" v-model="login.password" />
+      <input type="password" name="senha" id="senha" v-model="login.senha" />
 
       <button @click.prevent="logar" class="btn">Logar</button>
+
+      <ErrorNotification :errors="errors"></ErrorNotification>
     </form>
     <p class="recovery-password">
-      <a href="/" target="_blank">Perdeu a senha? Clique aqui.</a>
+      <a href="http://localhost/ranekwp/wp-login.php?action=lostpassword" target="_blank">Perdeu a senha? Clique aqui.</a>
     </p>
 
     <LoginCreate></LoginCreate>
@@ -20,28 +22,34 @@
 
 <script>
   import LoginCreate from '@/components/LoginCreate.vue';
+import ErrorNotification from '@/components/ErrorNotification.vue';
 
   export default {
     name: "LoginPanel",
     components:{
-      LoginCreate
-    },
+    LoginCreate,
+    ErrorNotification
+},
     data(){
       return{
         login:{
           email: "",
-          password: ""
-        }
+          senha: ""
+        },
+        errors: []
       }
     },
     methods:{
       logar(){
+        this.errors = []
         this.$store.dispatch("logarUsuario", this.login)
           .then(response => {
             console.log(response)
             this.$store.dispatch("getUser")
+            this.$router.push({ name: "user"})
+          }).catch(error => {
+            this.errors.push(error.response.data.message)
           })
-        this.$router.push({ name: "user"})
       }
     }
   }

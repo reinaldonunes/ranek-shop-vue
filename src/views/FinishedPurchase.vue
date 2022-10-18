@@ -4,6 +4,7 @@
     <UserForm>
       <button class="btn" @click.prevent="finalizarCompra">Finalizar compra</button>
     </UserForm>
+    <ErrorNotification></ErrorNotification>
   </section>
 </template>
 
@@ -11,11 +12,18 @@
   import UserForm from '@/components/UserForm.vue';
   import { api } from '@/services.js';
   import { mapState } from 'vuex';
+import ErrorNotification from '@/components/ErrorNotification.vue';
 
   export default {
     name: "FinishedPurchase",
     components:{
-      UserForm
+    UserForm,
+    ErrorNotification
+},
+    data(){
+      return{
+        errors: []
+      }
     },
     props: ["produto"],
     computed:{
@@ -39,6 +47,7 @@
     },
     methods:{
       criarTransacao(){
+        this.errors = []
         return api.post("/transacao", this.compra)
           .then(() => {
             this.$router.push({ name: "sales"})
@@ -51,7 +60,7 @@
           
           await this.criarTransacao();
         }catch(error){
-          console.log(error)
+          this.errors.push(error.response.data.message)
         }
       },
       finalizarCompra(){

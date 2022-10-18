@@ -126,4 +126,11 @@
     .v-leave-active{
         transition: 0.3s;
     }
+
+
+    .btn-disabled,
+    .btn-disabled:hover{
+      background:#bbc;
+      transform:scale(1);
+    }
 </style>
