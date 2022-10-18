@@ -12,11 +12,25 @@
 <script>
   import HeaderBar from "@/components/HeaderBar.vue";
   import FooterBar from "@/components/FooterBar.vue";
+  
+  import { api } from '@/services.js';
+
 
   export default {
     components:{
       HeaderBar,
       FooterBar
+    },
+    created(){
+      if(window.localStorage.token){
+        api.validateToken()
+          .then(() => {
+            this.$store.dispatch("getUser")
+          })
+          .catch(() => {
+            window.localStorage.removeItem("token");
+          })
+      }
     }
   }
 </script>

@@ -27,7 +27,8 @@
       async createUser(){
         try{
           await this.$store.dispatch("createUser", this.$store.state.user)
-          await this.$store.dispatch("getUser", this.$store.state.user.email)
+          await this.$store.dispatch("logarUsuario", this.$store.state.user)
+          await this.$store.dispatch("getUser")
           this.$router.push({ name: "user"})
         }catch(error){
           console.log(error)

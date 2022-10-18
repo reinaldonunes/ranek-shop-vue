@@ -31,7 +31,7 @@
     },
     methods:{
       getCompras(){
-        api.get(`/transacao?vendedor_id=${this.user.id}`)
+        api.get(`/transacao?tipo=comprador_id`)
           .then(response => {
             this.compras = response.data
           })

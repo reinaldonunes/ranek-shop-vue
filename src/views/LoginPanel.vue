@@ -36,7 +36,11 @@
     },
     methods:{
       logar(){
-        this.$store.dispatch("getUser", this.login.email)
+        this.$store.dispatch("logarUsuario", this.login)
+          .then(response => {
+            console.log(response)
+            this.$store.dispatch("getUser")
+          })
         this.$router.push({ name: "user"})
       }
     }

@@ -33,7 +33,7 @@ const routes = [
     component: LoginPanel
   },
   {
-    path: '/user',
+    path: '/usuario',
     component: UserProfile,
     children:[
       {

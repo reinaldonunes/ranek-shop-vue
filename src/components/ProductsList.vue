@@ -12,7 +12,7 @@
             </div>
             <ProductsPaginate :produtosTotal="produtosTotal" :perView="perView"></ProductsPaginate>
         </div>
-        <div v-else-if="produtos && produtos.length === 0" class="sem-resultado" :key="sem-resultados">
+        <div v-else-if="produtos && produtos.length === 0" class="sem-resultado">
             Busca sem resultados. Tente pesquisar outro termo.
         </div>
         <PageLoad v-else></PageLoad>
