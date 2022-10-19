@@ -54,7 +54,7 @@ npm run build
 
 ## 🔐 Backend
 
-O back-end para o projeto funcionar é feito em WordPress, que precisa ser instalado e configurado localmente para poder fornecer os endpoints da API. A base de instalação/configuraçestá disponível [NESTE REPOSITÓRIO](https://github.com/reinaldonunes/OrigamidCursos/tree/main/wordpress_rest_api).
+O back-end para o projeto funcionar é feito em WordPress, que precisa ser instalado e configurado localmente para poder fornecer os endpoints da API. A base de instalação/configuraçestá disponível no arquivo [NESTE PACOTE](https://github.com/reinaldonunes/ranek_vuejs/blob/e9d0f3d9f90784047674fa46ec4b017134d65af0/ranek-wordpress-config.tar.gz).
 
 <br /><br /><br />
 
