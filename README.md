@@ -34,13 +34,13 @@ O projeto faz parte do curso de Vue.js 2 completo ofertado pela Origamid, e pode
 
 ## 🔥 Front-end
 
-Intale as dependências do projeto:
+Instale as dependências do projeto:
 
 ```
 npm install
 ```
 
-Rode a aplicação
+Rode a aplicação:
 
 ```
 npm run dev
@@ -54,7 +54,7 @@ npm run build
 
 ## 🔐 Backend
 
-O backend para o projeto funcionar é feito em WordPress, que precisa ser instalado e configurado localmente. A base do back-end está disponível [NESTE REPOSITÓRIO](https://github.com/reinaldonunes/OrigamidCursos/tree/main/wordpress_rest_api).
+O back-end para o projeto funcionar é feito em WordPress, que precisa ser instalado e configurado localmente para poder fornecer os endpoints da API. A base de instalação/configuraçestá disponível [NESTE REPOSITÓRIO](https://github.com/reinaldonunes/OrigamidCursos/tree/main/wordpress_rest_api).
 
 <br /><br /><br />
 
