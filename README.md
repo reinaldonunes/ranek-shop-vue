@@ -22,7 +22,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-O Rocketpay é um componente que simula o formulário de preenchimento de cartão de crédito, onde é possível adicionar máscara aos inputs e atualizar elementos HTML via DOM.
+O Ranek Shop é uma SPA que simula uma loja virtual, onde é possível criar conta, fazer login, adicionar, comprar, vender e deletar produtos, utilizando para isso a reatividade do Vue.js + consumo de REST API do WordPress.
 
 ## 🔖 Source
 
